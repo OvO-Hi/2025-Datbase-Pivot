@@ -411,10 +411,11 @@ public class Main {
 
                                 if (menu == 1) {
                                     System.out.println("\n📋 [메인 메뉴] - [케이크 주문하기] - [구매 가능한 케이크 목록]");
-                                    // 상태가 '판매중'인 케이크만 조회 (이름, 가격, 재고, 상태 정보 포함)
-                                    String cakeListSQL = "SELECT cake_name, price, stock_quantity, state FROM cake WHERE state = '판매중'";
+                                    // available_cake_view를 통해 구매 가능한 케이크만 조회
+                                    String cakeListSQL = "SELECT cake_name, price, stock_quantity, state FROM available_cake_view";
                                     PreparedStatement psCakeList = conn.prepareStatement(cakeListSQL);
                                     ResultSet rsCakeList = psCakeList.executeQuery();
+
 
                                     boolean hasAvailableCake = false; // 구매 가능한 케이크 있는지 확인
                                     while (rsCakeList.next()) {
